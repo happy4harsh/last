@@ -1,0 +1,66 @@
+
+
+
+
+
+
+task email 1:
+
+step 1:
+
+ <?php
+// the message
+$msg = "First Mail Script";
+
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
+
+// send email
+mail("parul@commercepundit.com","My subject",$msg);
+
+echo "123";
+?> 
+
+step 2:
+
+
+first install ssmtp folder if not 
+
+use this code : sudo apt-get install ssmtp
+
+
+than do  : gedit /etc/ssmtp/ssmtp.conf
+
+than paste below code given below :
+
+
+
+# Config file for sSMTP sendmail
+#
+# The person who gets all mail for userids < 1000
+# Make this empty to disable rewriting.
+root=commerce.pundit100@gmail.com
+
+# The place where the mail goes. The actual machine name is required no 
+# MX records are consulted. Commonly mailhosts are named mail.domain.com
+mailhub=smtp.gmail.com:587
+
+# Where will the mail seem to come from?
+#rewriteDomain=
+
+# The full hostname
+hostname=localhost
+
+# Are users allowed to set their own From: address?
+# YES - Allow the user to specify their own From: address
+# NO - Use the system generated From: address
+#FromLineOverride=YES
+root=auth@commercepundit.com
+rewriteDomain=gmail.com
+AuthUser=auth@commercepundit.com
+AuthPass=Auth1234
+FromLineOverride=YES
+UseTLS=YES
+useSTARTTLS=YES
+
+

@@ -1,0 +1,930 @@
+PROBLEM 1 : 
+
+Switch PHP version:
+
+    From php5.6 to php7.0:
+
+        Apache:
+
+        sudo a2dismod php5.6 ; sudo a2enmod php7.0 ; sudo service apache2 restart
+
+        CLI:
+
+        sudo update-alternatives --set php /usr/bin/php7.0
+
+    From php7.0 to php5.6:
+
+        Apache:
+
+        sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart
+
+        CLI:
+
+        sudo update-alternatives --set php /usr/bin/php5.6
+
+
+
+
+configure send mail in php
+http://askubuntu.com/questions/12917/how-to-send-mail-from-the-command-line
+http://serverfault.com/questions/784668/ssmtp-settings-for-namecheap-invalid-response-smtp-server-starttls
+
+
+
+
+PROBLEM 2:
+
+MISSING FILES
+
+PHP Extension curl. 
+PHP Extension intl. 
+PHP Extension zip.
+
+
+SOLUTION
+
+for 5.6
+
+sudo apt-get install php5.6-curl
+sudo apt-get install php5.6-intl
+sudo apt-get install php5.6-zip
+
+
+for 7.0
+
+sudo apt-get install php7.0-curl
+sudo apt-get install php7.0-intl
+sudo apt-get install php7.0-zip
+a2enmode rewrite 
+
+
+
+problem 3
+
+question : php setting check error
+
+solution :Open php.ini file using below command:
+		
+		sudo gedit /etc/php/5.6/apache2/php.ini 
+
+	        -always_populate_raw_post_data set value -1(always_populate_raw_post_data=-1)
+
+		-remove semi colon and close the file
+
+		-restart apache service
+
+		sudo service apache2 restart
+
+
+problem 4
+
+how to completely remove phpmyadmin and reisntall phpmyadmin:
+
+		sudo apt-get remove --purge mysql-\*
+		
+		sudo apt-get install mysql-server mysql-client
+
+
+ 
+
+
+problem 5
+
+when one or more indexers are invalid.
+
+before this check your cli and browser version of php must be same using "php -v" in cli and info.php in browser.
+
+		cd /var/www/html/magentosample/
+
+		php bin/magento indexer:reindex
+
+		php bin/magento cache:flush
+
+then again give permission to magento folder 
+		
+		 chmod /var/www/html -R 777 magentosample
+
+
+problem 6 :
+how to intall magentu2 by composer 
+https://www.vultr.com/docs/installing-magento-2-on-ubuntu
+http://inchoo.net/magento-2/how-to-install-magento-2/
+
+
+*********************
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-magento-on-ubuntu-14-04
+this commandd is imp
+effect on  the localhost
+
+sudo a2ensite 000-default.conf
+
+Enabling site 000-default.
+To activate the new configuration, you need to run:
+  service apache2 reload
+
+
+sudo a2dissite 000-default.conf
+
+Site 000-default disabled.
+To activate the new configuration, you need to run:
+  service apache2 reload
+
+*********************
+
+problem 7 :
+
+not able to install ssl and ufw
+https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-16-04
+
+change in core-config-data file in mysql.
+and make https instead of http
+
+
+problem 8:
+if we have multiple webiste than we have to follow the below link
+https://www.youtube.com/watch?v=CKZp82Wn38Y
+https://www.magestore.com/magento-2-tutorial/how-to-switch-among-multiple-websites-in-magento-2/
+
+
+problem 9 :
+
+invoice image logo not working
+email logo not working
+free on buy 1 get 1 free cart rule not working
+price and stock low email not working
+persitant cart not working.
+
+import product data not working x-frame error mem known.
+answer -> https://addons.mozilla.org/en-us/firefox/addon/ignore-x-frame-options/
+
+
+when you import congfig data some attrib will not come like if size or color option will not come 
+
+question10:
+
+check single email id is working in two different website of a single setup?
+
+question 11 :
+user login karya vagar downloadble product download na kari sake athva purchase na kari sake ena customer guest disable karvani jarur nathi ena mate alag thi downkloadble setting ave che
+answer store config:catalog: Disable Guest Checkout if Cart Contains Downloadable Items
+
+
+question 12 
+magento installation using composer
+https://magenticians.com/installing-magento-2-composer/
+https://magenticians.com/quick-look-magento-2-setup-system/
+http://inchoo.net/magento-2/how-to-install-magento-2/
+https://www.creare.co.uk/blog/magento/install-magento-2-using-composer
+
+
+question 13 
+when you import data for bundle product.then the product you add seprately or together must be have to in same website.....
+
+**************************************
+rm -rf var/cache var/generation var/view_preprocessed var/page_cache
+rm -rf pub/static/frontend
+rm -rf pub/static/_requirejs
+php bin/magento setup:static-content:deploy
+
+
+question 14
+custom footer
+
+m6/app/design/frontend/cp/trendroots/magento_theme/layout
+default.xml
+
+paste this code
+
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer-container">
+            <block class="Magento\Theme\Block\Html\Footer" name="footer" template="html/footer.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
+
+now footer.phtml
+m6/app/design/frontend/cp/trendroots/magento_theme/templates/html
+
+paste this code
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('custom footer 1')->toHtml();?>
+
+
+question 15 
+how to config git
+https://www.youtube.com/watch?v=RLFVbcrdWi0
+
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Settings
+Quick setup — if you’ve done this kind of thing before
+or
+
+We recommend every repository include a README, LICENSE, and .gitignore.
+…or create a new repository on the command line
+
+echo "# Magento-Form-Display" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/happy4harsh/Magento-Form-Display.git
+git push -u origin master
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/happy4harsh/Magento-Form-Display.git
+git push -u origin master
+
+…or import code from another repository
+
+You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
+ProTip! Use the URL for this page when adding GitHub as a remote. 
+
+*******************************************************************************************
+
+
+QUESTION 16
+HOW TO IMPORT LARGE DATA IN TO MYSQL
+
+FIRST GOTO ETC
+cd etc
+than 
+mysql -u root -p
+and he need password enter toor as password
+
+first create < database name>
+
+than fire command 1
+cd etc: use < database name> 
+
+than fire command 2
+cd etc: source  file path/<filename.sql>
+
+
+QUESTION 17
+HOW TO CALL CMS FOOTER BLOCK THROUGH DEFAUL.XML AND ALSO CHANGE THE DIV CLASS ACCORDING TO YOUR THEME
+
+<referenceBlock name="advanced-search-link" remove="true"/>
+<referenceBlock name="footer_links" remove="true" />
+<referenceBlock name="form.subscribe" remove="true"/>
+
+<referenceContainer name="footer-container">
+            <container name="footer-top" label="Footer Top" htmlTag="div" htmlClass="footer-top page-main">
+                <block class="Magento\Cms\Block\Block" name="footer1">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer1</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <container name="footer-center" label="Footer Center" htmlTag="div" htmlClass="footer-center page-main" after="footer-top">
+                <block class="Magento\Cms\Block\Block" name="footer2">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer2</argument>
+                    </arguments>
+                </block>
+            </container>
+</referenceContainer>
+     
+
+
+QUETION 18
+HOW TO CALL CMS FOOTER BLOCK THROUGH DEFAUL.XML VIA .PHTML BLOCK 
+<referenceBlock name="advanced-search-link" remove="true"/>
+
+	<referenceContainer name="footer-container">
+
+
+                     <block class="Magento\Theme\Block\Html\Footer" name="footer" template="html/footer.phtml"/>
+	          >
+
+	</referenceContainer>
+ 
+THAN CREATE FOOTER.PHTML IN MAGENTO_THEME/TEMPLATES/HTML
+THAN INSERRT THIS CODE AND CHANGE IDENTIFIER NAME
+
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('IDENTIFIER BLOCK ID')->toHtml();?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer-center-page-main')->toHtml();?>
+
+question 19 
+if error DOMdoc not found or skin not applying than do changes in 
+gedit etc/apache2/apache2.conf
+and set override none to all
+
+removing blocks from product page view
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css"/>
+    </head>
+    <update handle="catalog_product_opengraph" />
+    <update handle="page_calendar"/>
+    <body>
+        
+	 <move element="page.main.title" destination="product.info.main" before="-"/>
+
+	  <referenceContainer name="product.info.social">
+
+			<referenceBlock name="view.addto.compare" remove="true" />
+                        <referenceBlock name="product.info.mailto" remove="true" />			
+                        <referenceBlock name="view.addto.wishlist" remove="true" />			
+
+		        <referenceBlock name="reviews.tab" remove="true" />
+		        <referenceBlock name="product.info.sku" remove="true" />
+        <referenceBlock name="product.review.form" remove="true" />
+
+        <referenceBlock name="product.info.overview" remove="true"/>
+	 </referenceContainer>
+
+         
+
+
+<referenceBlock name="catalog.product.related" remove="true" />
+
+
+
+     
+
+
+	</body>
+</page>
+
+
+question 20:
+how to add featured product slider 
+https://docs.mageplaza.com/product-slider-m2/advanced-configuration.html
+
+question 21:
+how to apply slider simple slider on .phtml file like new_grid.phtml
+
+step 1: 
+first create a widget for new product from homepage and add widget to home page for new product 
+
+than customize the folder in your theme 
+like below.
+
+
+customize this Magento_Catalog.
+
+/var/www/html/MS1/app/design/frontend/parle/hideseek/Magento_Catalog/templates/product/widget/new/content
+
+new_grid.phtml
+
+add code at the end of file which is given below.
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \Magento\Catalog\Block\Product\Widget\NewWidget
+ */
+if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) {
+    $type = 'widget-new-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $title = __('New Products');
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+}
+?>
+
+<?php if ($exist):?>
+    <div class="block widget block-new-products <?php /* @escapeNotVerified */ echo $mode; ?>">
+        <div class="block-title">
+            <strong role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo $title; ?></strong>
+        </div>
+        <div class="block-content">
+            <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+            <div class="products-<?php /* @escapeNotVerified */ echo $mode; ?> <?php /* @escapeNotVerified */ echo $mode; ?>">
+                <ul class="bxslider product-items <?php /* @escapeNotVerified */ echo $type; ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info">
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product-item-photo">
+                                <?php echo $block->getImage($_item, $image)->toHtml(); ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
+                                       class="product-item-link">
+                                        <?php echo $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?php
+                                echo $block->getProductPriceHtml($_item, $type);
+                                ?>
+
+                                <?php if ($templateType): ?>
+                                    <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+
+                                <?php if ($showWishlist || $showCompare || $showCart): ?>
+                                    <div class="product-item-actions">
+                                        <?php if ($showCart): ?>
+                                            <div class="actions-primary">
+                                                <?php if ($_item->isSaleable()): ?>
+                                                    <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+                                                        <button class="action tocart primary"
+                                                                data-mage-init='{"redirectUrl":{"url":"<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_item) ?>"}}'
+                                                                type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+                                                            <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                                                        </button>
+                                                    <?php else: ?>
+                                                        <?php
+                                                            $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                        ?>
+                                                        <button class="action tocart primary"
+                                                                data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+                                                                type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+                                                            <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                                                        </button>
+                                                    <?php endif; ?>
+                                                <?php else: ?>
+                                                    <?php if ($_item->getIsSalable()): ?>
+                                                        <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                                    <?php else: ?>
+                                                        <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if ($showWishlist || $showCompare): ?>
+                                            <div class="actions-secondary" data-role="add-to-links">
+                                                <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+                                                    <a href="#"
+                                                       data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'
+                                                       class="action towishlist" data-action="add-to-wishlist"
+                                                       title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+                                                        <span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+                                                    <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');?>
+                                                    <a href="#" class="action tocompare"
+                                                       data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_item);?>'
+                                                       title="<?php /* @escapeNotVerified */ echo __('Add to Compare') ?>">
+                                                        <span><?php /* @escapeNotVerified */ echo __('Add to Compare') ?></span>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ul>
+            </div>
+            <?php echo $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif;?>
+
+////////////addd this code at the end of file/////////////////////////
+
+<script type="text/javascript">
+    require([
+                'jquery',
+                'bxslider'                     ////////////////and add this bxslider in ol class in above code
+            ], function ($) {
+                $('.bxslider').bxSlider({
+            mode: 'horizontal',
+            moveSlides: 1,
+            slideMargin: 40,
+            infiniteLoop: true,
+            slideWidth: 660,
+            minSlides: 3,
+            maxSlides: 3,
+            speed: 800,
+        });
+            });
+</script>
+
+
+step 2:
+add web folder inside Magento_Catalog and inside web folder add cs/jss folder 
+
+in js folder add jquery.bxlsider.js,jquery.bxlsider.min.js,jquery.min.js,jquery-3.1.1.min.js
+in css folder add jquery.bxlsider.css,jquery.bxlsider.min.css
+
+Create requirejs-config.js in Magento_Catalog
+add below code 
+
+var config = {
+    paths: {            
+            'bxslider': "Magento_Catalog/js/jquery.bxslider.min"
+        },   
+    shim: {
+        'bxslider': {
+            deps: ['jquery']
+        }
+    }
+};
+
+
+define css in Magento_Theme  in layout folder in default_head_blocks.xml
+add below code.
+
+<css src="css/jquery.bxslider.css"/>
+
+https://magento.stackexchange.com/questions/136892/how-to-add-extra-container-to-page-header-in-magento-2
+
+
+
+
+question 22
+
+how to get sale tag special price tag and new tag at run time dynamic.
+***************************************************************************************
+  <?php
+								         $specialprice = $_product->getSpecialPrice();
+								         $specialPriceFromDate = $_product->getSpecialFromDate();
+								         $specialPriceToDate = $_product->getSpecialToDate();
+								         $_price=$_product->getPrice();
+								         $_finalPrice=$_product->getFinalPrice();
+								         $today = time();?>
+								
+								         <?php 
+								         if ($specialprice) {
+								          if ($today >= strtotime($specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime($specialPriceFromDate) && is_null($specialPriceToDate)) { ?>
+								           <span class="label-product label-sale">
+								           		<?php if($_finalPrice < $_price): ?>
+										          <?php $_savePercent = 100 - round(($_finalPrice / $_price)*100); ?>
+										            <?php echo __('-%1',$_savePercent."%");?>
+										          <?php endif; ?>
+								           </span>
+								          <?php }
+								         }
+								         ?>
+								         <?php
+								         $now = date("Y-m-d");
+								         $newsFrom = substr($_product->getNewsFromDate(), 0, 10);
+								         $newsTo = substr($_product->getNewsToDate(), 0, 10);
+
+								         if (($newsTo != '' || $newsFrom != '') && !$specialprice) {
+								         if (($newsTo != '' && $newsFrom != '' && $now >= $newsFrom && $now <= $newsTo) || ($newsTo == '' && $now >= $newsFrom) || ($newsFrom == '' && $now <= $newsTo)) {?>
+								           <span class="label-product label-new"><?php echo __('New'); ?></span>
+								         <?php }
+								         } ?>
+
+********************************************************************************************************************************************
+Question 23 
+how to create module simple module hello world
+
+1. Create the following folders:
+
+    app/code/Inchoo
+    app/code/Inchoo/Helloworld
+
+
+The Inchoo folder is the module’s namespace, and Helloworld is the module’s name.
+
+Note: If you don’t have the code folder in your app directory, create it manually.
+
+2. create a module.xml file in the app/code/Inchoo/Helloworld/etc folder with the following code:
+
+
+
+<?xml version="1.0"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Inchoo_Helloworld" setup_version="1.0.0">
+    </module>
+</config>
+
+3. create a registration.php file in the app/code/Inchoo/Helloworld folder with the following code:
+
+<?php
+ 
+\Magento\Framework\Component\ComponentRegistrar::register(
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
+    'Inchoo_Helloworld',
+    __DIR__
+);
+
+4. Open your terminal and go to the Magento 2 root. Run from there the following command:
+	
+	php bin/magento setup:upgrade
+
+5. Creating a controller
+
+	First we need to define the router. To do this, create a routes.xml file in 
+        the app/code/Inchoo/Helloworld/etc/frontend folder 
+	with the following code:
+	
+<?xml version="1.0"?>
+ 
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="helloworld" frontName="helloworld">
+            <module name="Inchoo_Helloworld" />
+        </route>
+    </router>
+</config>
+
+	Here we’re defining our frontend router and route with an id “helloworld”.
+
+	The frontName attribute is going to be the first part of our URL.
+
+In Magento 2 URL’s are constructed this way:
+
+      syntax : <frontName>/<controler_folder_name>/<controller_class_name> 
+      example : helloworld/index/index
+      finally : localhost/magento2/helloworld/index/index  <!-- to run this module -->
+
+ 
+6. Now we create the Index.php controller file in the app/code/Inchoo/Helloworld/Controller/Index folder with the following code
+****************************************************
+<?php
+ 
+namespace Inchoo\Helloworld\Controller\Index;
+ 
+use Magento\Framework\App\Action\Context;
+ 
+class Index extends \Magento\Framework\App\Action\Action
+{
+    protected $_resultPageFactory;
+ 
+    public function __construct(Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory)
+    {
+        $this->_resultPageFactory = $resultPageFactory;
+        parent::__construct($context);
+    }
+ 
+    public function execute()
+    {
+        echo "hello world";
+    }
+}
+**********************************************
+finish
+run module:
+      finally : localhost/magento2/helloworld/index/index  <!-- to run this module -->
+
+
+Question 24 
+how to use git push
+
+1. Create account on github and create repository
+2. create folder with same name as you create the repository.
+3. sudo apt-get install git in the folder
+4. git init
+5. note:  the data which u put into the folder we add/push on the repository by following command given below. 
+6. git add .
+7. git commit -m 'first commit'
+8. note: now u got a link from github when u create a new repository copy that link for ex: https://github.com/happy4harsh/Magento-Form-Display.git
+   use below code first time when you init otherwise skip below code line number 9 and goto 10 number line. 
+9. git remote add origin https://github.com/happy4harsh/Magento-Form-Display.git
+10 git push origin master
+finsih
+
+how to use git pull
+ git clone https://github.com/happy4harsh/Magento-Form-Display.git
+**********************************************************************
+question 25
+
+what is loadlayout() and renderlayout() do ? in controller'S Function
+
+$this->renderLayout(); get layout output and process this output to response body and append response
+
+$this->loadLayout(); creates XML tree at backend.
+
+
+question 26
+how to put calendar in textbox
+<input type="text" class="input-text required-entry" id="calendar_inputField" name="calendar_inputField" aria-required="true" >
+
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     ], function($){
+         $("#calendar_inputField").calendar({
+              buttonText:"<?php echo __('Select Date') ?>",
+         });
+       });
+</script>
+
+
+
+question 26
+core template without block call phtml file
+<block name="form" class="Magento\Framework\View\Element\Template" template="CP_Contactform::form.phtml"/>
+
+Question 27: For Searching text in admin grid
+https://www.maximehuran.fr/en/filters-creation-on-adminhtml-grid-with-magento-2/
+
+question 28***********************************
+use of new/sale/backorder/qty low qty on list.phtml
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                 <?php
+                                         $specialprice = $_product->getSpecialPrice();
+                                         $specialPriceFromDate = $_product->getSpecialFromDate();
+                                         $specialPriceToDate = $_product->getSpecialToDate();
+                                         $_price=$_product->getPrice();
+                                         $_finalPrice=$_product->getFinalPrice();
+                                         $today = time();?>
+                                
+                                        
+                                         
+                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-item-info" data-container="product-grid">
+                <?php 
+                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+                    $lowqty= $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId());
+                    if($lowqty<=5)
+                    {
+                        echo __("ONLY ".$lowqty." LEFT LOW STOCK"."</br>");
+                    }
+                    
+                ?>
+
+
+                              <?php 
+                                         if ($specialprice) {
+                                          if ($today >= strtotime($specialPriceFromDate) && $today <= strtotime($specialPriceToDate) || $today >= strtotime($specialPriceFromDate) && is_null($specialPriceToDate)) { ?>
+                                           <span class="label-product label-sale">
+                                                <?php if($_finalPrice < $_price): ?>
+                                                  <?php $_savePercent = 100 - round(($_finalPrice / $_price)*100); ?>
+                                                    <?php echo __('-%1',$_savePercent."%"."OFF SALE");?>
+                                                  <?php endif; ?>
+                                           </span>
+                                          <?php }
+                                         }
+                                         ?>
+
+                                         <?php
+                                         $now = date("Y-m-d");
+                                         $newsFrom = substr($_product->getNewsFromDate(), 0, 10);
+                                         $newsTo = substr($_product->getNewsToDate(), 0, 10);
+
+                                         if (($newsTo != '' || $newsFrom != '') ) {
+                                         if (($newsTo != '' && $newsFrom != '' && $now >= $newsFrom && $now <= $newsTo) || ($newsTo == '' && $now >= $newsFrom) || ($newsFrom == '' && $now <= $newsTo)) {?>
+                                          <span style="background-color:blue ; color:white;"> <?php echo __('New'); ?></span>
+                                         <?php }
+                                         } ?>
+                    <?php
+                    $productImage = $block->getImage($_product, $image);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+                    <?php // Product Image ?>
+                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                        <?php echo $productImage->toHtml(); ?>
+                    </a>
+                    <div class="product details product-item-details">
+                        <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                        ?>
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                            </a>
+                        </strong>
+                        <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                        <?php echo $block->getProductDetailsHtml($_product); ?>
+
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
+                                <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                        <form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+                                            <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+                                            <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+                                            <?php echo $block->getBlockHtml('formkey')?>
+                                            <?php
+                                            if($lowqty<=0)
+                                            {
+                                                echo __("ONLY BACKORDER "."</br>");
+                                            }?>
+                                            <button type="submit"
+                                                    title="<?php echo $block->escapeHtml(__('Add to Cartsss')); ?>"
+                                                    class="action tocart primary">
+                                                <span><?php /* @escapeNotVerified */ echo __('Add to Cartsss') ?></span>
+                                            </button>
+                                        </form>
+                                    <?php else: ?>
+                                        <?php if ($_product->getIsSalable()): ?>
+                                            <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                        <?php else: ?>
+                                            <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php if ($showDescription):?>
+                                <div class="product description product-item-description">
+                                    <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $_productNameStripped ?>"
+                                       class="action more"><?php /* @escapeNotVerified */ echo __('Learn More') ?></a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php echo($iterator == count($_productCollection)+1) ? '</li>' : '' ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+
+***********************************************************************
